@@ -1,0 +1,131 @@
+Name: Christian Garcia
+FSUID: cmg21h
+
+CEN4020 - Assignment #3: Git and Object Oriented Programming Warm Up
+
+Git Lab Tutorials completed - 10/16/2026
+  - Learn Git Branching (Main - Introduction Sequence; Remote - Push &
+    Pull - Git Remotes)
+  - Visualizing Git
+  - Extra tutorial from try.github.io - "Hello World"
+    (https://github.com/Juan-711/hello-world)
+GitHub account created - 06/11/2025
+GitHub repository (public) - https://github.com/Juan-711/assignment2 
+
+------------------------------------------------------------------------
+1. Paste the console output you saved at the end of step 3.C
+------------------------------------------------------------------------
+$ git push
+info: please complete authentication in your browser...
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (7/7), 865 bytes | 865.00 KiB/s, done.
+Total 7 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+To https://github.com/Juan-711/assignment2.git
+   f4975e5..c0fc704  master -> master
+
+------------------------------------------------------------------------
+2. How many commits have been done to the repository (not only by you,
+   but by anyone) so far? Write the git command you used to get this
+   information.
+------------------------------------------------------------------------
+9 commits. The original repo had 6, and I added 3 (README, status.txt,
+and the empty answers.txt). This file's commit will make it 10.
+
+git rev-list --count HEAD
+
+------------------------------------------------------------------------
+3. When was the README.md file modified last? Write the git command you
+   used to get this information.
+------------------------------------------------------------------------
+Fri Oct 16 10:35:43 2026 -0400, when I committed my name and FSUID.
+
+git log -1 --format=%cd -- README.md
+
+------------------------------------------------------------------------
+4. Mention two reasons why branches are used in a Git repository.
+------------------------------------------------------------------------
+1) You can work on a new feature or bug fix without messing up the main
+   branch. If it doesn't work out, you just delete the branch.
+2) Multiple people can work on different things at the same time, then
+   merge their work back into main when it's ready, usually through a
+   pull request so someone can review it first.
+
+------------------------------------------------------------------------
+5. What is the difference between git log and git status?
+------------------------------------------------------------------------
+The command git log shows the history of commits that have already been
+made (hash, author, date, message).
+
+The command git status shows what's going on right now: which branch
+you're on, whether you're ahead or behind the remote, and which files
+are modified, staged, or untracked and haven't been committed yet.
+
+------------------------------------------------------------------------
+6. What command would you use to see the commits where "Vehicle.h" was
+   one of the committed files?
+------------------------------------------------------------------------
+git log -- Vehicle.h
+
+------------------------------------------------------------------------
+7. What command would you use to see the commits whose commit message
+   contains the word "file"?
+------------------------------------------------------------------------
+git log --grep="file"
+
+------------------------------------------------------------------------
+8. In the context of object-oriented programming (I) What is
+   inheritance? (II) What is polymorphism? (III) What is
+   encapsulation?
+------------------------------------------------------------------------
+(I) Inheritance - a class can be based on another class and get its
+    variables and methods, then add or override its own. In this repo,
+    Car inherits from PoweredVehicle, which inherits from Vehicle, and
+    Bicycle inherits directly from Vehicle.
+
+(II) Polymorphism - you can treat objects of different classes as their
+    base class, and the right version of a method still gets called at
+    runtime. In C++, this works through virtual functions. In main.cpp,
+    the vehicles are stored in a Vehicle** array, but calling
+    toString() or mileageEstimate() runs the Car or Bicycle version.
+
+(III) Encapsulation - keeping a class's data private and only letting
+    outside code change it through the class's own methods. For
+    example, Car's engine size is private and can only be set through
+    setEngineSize(), which only accepts "unknown", "small", "medium",
+    or "grande".
+
+------------------------------------------------------------------------
+9. What is the main difference between the "Dictator and Lieutenants"
+   workflow and the "Integration manager" workflow?
+------------------------------------------------------------------------
+The main difference is who handles merging and conflicts. In the
+Integration Manager workflow, it's centralized - every developer pushes
+to their own public repo, and one integration manager merges everyone's
+changes into the blessed repo and fixes all the conflicts.
+
+In the Dictator and Lieutenants workflow, that work is split up.
+Developers push to an assigned lieutenant, and each lieutenant merges
+the changes from their group and fixes those conflicts. Then the
+dictator merges the lieutenants' repos and is the only one who can push
+to the blessed repo.
+
+------------------------------------------------------------------------
+10. How would a team of 100 developers benefit from following the
+    "Dictator and Lieutenants" workflow instead of the "Centralized"
+    workflow?
+------------------------------------------------------------------------
+With Centralized, all 100 people push to the same repo, and each person
+has to pull and fix conflicts before they can push. With that many
+people, someone has almost always pushed before you, so you keep pulling
+and fixing conflicts over and over. There's also nothing stopping
+someone from pushing broken code straight to the main repo.
+
+With Dictator and Lieutenants, each lieutenant only deals with a smaller
+group, so merging is more manageable and the lieutenant can review code
+for their part of the project. Since only the dictator pushes to the
+main repo, code gets checked twice before it gets there, and no single
+person has to merge work from all 100 developers.
